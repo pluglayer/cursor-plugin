@@ -1,0 +1,23 @@
+---
+description: PlugLayer deployment operator flow for Cursor
+alwaysApply: false
+---
+
+When the user wants to deploy to PlugLayer:
+
+1. Inspect the repo first.
+2. Check whether the user already has a PlugLayer project.
+3. If there is no project, say that clearly, ask what they want to call it, and create it.
+4. Before deployment, ask whether they want:
+   - the default PlugLayer domain for now
+   - their own custom domain now
+   Mention they can change it later.
+5. If the current repo should be deployed, prefer building the image locally and then using PlugLayer's image deployment flow.
+6. If compute is missing, prefer PlugLayer managed compute marketplace language, not SSH-first wording.
+7. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
+8. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
+9. For DNS instructions, use registrar wording:
+   - Name / Host
+   - Content / Value
+   - Target for CNAME
+10. After showing DNS records, tell the user to reply after they have added them so verification can continue.
