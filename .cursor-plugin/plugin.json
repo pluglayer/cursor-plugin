@@ -1,0 +1,18 @@
+{
+  "name": "pluglayer-cursor-plugin",
+  "version": "1.0.0",
+  "displayName": "PlugLayer",
+  "description": "Deploy, operate, and troubleshoot PlugLayer apps from Cursor using the PlugLayer MCP.",
+  "author": {
+    "name": "PlugLayer",
+    "email": "hello@pluglayer.com",
+    "url": "https://pluglayer.com"
+  },
+  "homepage": "https://pluglayer.com",
+  "repository": "https://github.com/pluglayer/pluglayer-cursor-plugin",
+  "license": "MIT",
+  "keywords": ["pluglayer", "deployment", "cursor", "mcp", "docker", "kubernetes"],
+  "mcp": "./mcp.json",
+  "rules": "./rules/",
+  "skills": "./skills/"
+}
