@@ -4,7 +4,7 @@
     "type": "stdio",
     "args": ["pluglayer-mcp"],
     "env": {
-      "PLUGLAYER_API_KEY": "${PLUGLAYER_API_KEY}"
+      "PLUGLAYER_API_KEY": "${env:PLUGLAYER_API_KEY}"
     }
   }
 }
