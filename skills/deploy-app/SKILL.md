@@ -18,7 +18,8 @@ Use this skill when the user wants to ship an app to PlugLayer.
    Mention they can change it later.
 4. Check compute availability.
    - If sizing is unclear, call `estimate_compute`.
-   - If compute is missing, prefer PlugLayer compute marketplace language over SSH wording.
+   - If compute is missing or zero, call `estimate_compute`, share the PlugLayer link for getting or purchasing compute, and do not deploy yet.
+   - After the user says they added or purchased compute, always check available compute again before deploying.
 5. Choose placement:
    - `personal` when the user explicitly wants dedicated personal compute
    - `shared` when the user explicitly wants shared PlugLayer compute
@@ -63,6 +64,16 @@ For current-repo deployments:
 5. prefer PlugLayer-managed mirroring when available
 
 Do not ask the user for a prebuilt image if the current repo can be built confidently.
+
+## Missing compute rule
+If available compute is zero or insufficient:
+
+1. stop before deployment
+2. run `estimate_compute`
+3. share the returned PlugLayer compute link
+4. wait for the user to complete the compute step
+5. check available compute again
+6. only then deploy
 
 ## Domain guidance
 When explaining DNS records:

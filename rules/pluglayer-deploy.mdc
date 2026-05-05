@@ -14,10 +14,11 @@ When the user wants to deploy to PlugLayer:
    Mention they can change it later.
 5. If the current repo should be deployed, prefer building the image locally and then using PlugLayer's image deployment flow.
 6. If compute is missing, prefer PlugLayer managed compute marketplace language, not SSH-first wording.
-7. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
-8. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
-9. For DNS instructions, use registrar wording:
+7. If compute is missing or zero, estimate compute first, share the PlugLayer purchase/get-compute link, then re-check available compute before trying to deploy again.
+8. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
+9. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
+10. For DNS instructions, use registrar wording:
    - Name / Host
    - Content / Value
    - Target for CNAME
-10. After showing DNS records, tell the user to reply after they have added them so verification can continue.
+11. After showing DNS records, tell the user to reply after they have added them so verification can continue.
