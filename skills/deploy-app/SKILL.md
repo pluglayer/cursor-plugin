@@ -26,6 +26,7 @@ Use this skill when the user wants to ship an app to PlugLayer.
    - If it likely already contains the same app, ask the user whether they want to update the existing app, replace it, or add a separate new app.
    - If they want to update it, prefer redeploying/updating the existing app instead of creating a duplicate.
    - If they want to replace it, explain that the older app may need to be removed to free quota and avoid confusion.
+   - If the namespace already looks full, quota-limited, or occupied by a failed/crash-looping older workload, refuse the separate new-app path by default and steer the user into update or replace flow instead.
 7. Choose placement:
    - `personal` when the user explicitly wants dedicated personal compute
    - `shared` when the user explicitly wants shared PlugLayer compute
@@ -97,6 +98,7 @@ Before deploying into a project that already has one or more apps:
    - add a separate new app
 3. do not silently create duplicates when the user's intent is ambiguous
 4. if quota or compute is tight, explain that replacing or deleting the old app may be necessary before the new deploy can succeed
+5. if the project namespace is already full and a similar app exists, do not continue with a brand-new app deploy unless the user explicitly insists on adding a second app
 
 ## Domain guidance
 When explaining DNS records:
