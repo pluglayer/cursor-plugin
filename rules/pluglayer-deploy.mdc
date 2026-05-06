@@ -12,7 +12,7 @@ When the user wants to deploy to PlugLayer:
    - the default PlugLayer domain for now
    - their own custom domain now
    Mention they can change it later.
-5. If the current repo should be deployed, prefer building the image locally and then using PlugLayer's image deployment flow.
+5. If the current repo should be deployed, prefer building the image locally. If the image only exists on the local machine, export it with `docker save` and use PlugLayer's uploaded-image deploy flow. Use plain image deployment only for registry-pullable source images.
 6. If compute is missing, prefer PlugLayer managed compute marketplace language, not SSH-first wording.
 7. If compute is missing or zero, estimate compute first, share the PlugLayer purchase/get-compute link, then re-check available compute before trying to deploy again.
 8. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.

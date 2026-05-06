@@ -47,6 +47,7 @@ Use this skill when the user wants to ship an app to PlugLayer.
 - get compute summary
 - list registries
 - deploy image
+- upload image archive and deploy
 - deploy compose
 - update app domain
 - add / verify / attach custom domains
@@ -60,8 +61,9 @@ For current-repo deployments:
 1. inspect the codebase
 2. build the image locally
 3. tag it clearly
-4. deploy it through PlugLayer's image flow
-5. prefer PlugLayer-managed mirroring when available
+4. if the image only exists locally, export it with `docker save` and use the uploaded-image deploy flow
+5. use plain `deploy_image` only when the source image is already pullable from a registry
+6. prefer PlugLayer-managed mirroring when available
 
 Do not ask the user for a prebuilt image if the current repo can be built confidently.
 
