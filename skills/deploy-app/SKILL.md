@@ -12,25 +12,31 @@ Use this skill when the user wants to ship an app to PlugLayer.
 2. Check project availability.
    - If the user names a project, use it.
    - If they do not have one, say that clearly, ask what they want to call it, and create it.
-3. Before deployment, ask whether they want:
-   - the default PlugLayer domain for now
-   - their own custom domain now
+3. Before deployment, list the domains already available in that project.
+4. When asking which domain path they want now, include:
+   - any existing project domain that is already attached or verified
+   - the default PlugLayer domain
+   - adding a new custom domain
    Mention they can change it later.
-4. Check compute availability.
+5. Check compute availability.
    - If sizing is unclear, call `estimate_compute`.
-   - If compute is missing or zero, call `estimate_compute`, share the PlugLayer link for getting or purchasing compute, and do not deploy yet.
+   - If compute is missing or zero, call `estimate_compute`, offer PlugLayer compute, share the PlugLayer link for getting or purchasing compute, and do not deploy yet.
    - After the user says they added or purchased compute, always check available compute again before deploying.
-5. Choose placement:
+6. Check whether this project already has apps.
+   - If it likely already contains the same app, ask the user whether they want to update the existing app, replace it, or add a separate new app.
+   - If they want to update it, prefer redeploying/updating the existing app instead of creating a duplicate.
+   - If they want to replace it, explain that the older app may need to be removed to free quota and avoid confusion.
+7. Choose placement:
    - `personal` when the user explicitly wants dedicated personal compute
    - `shared` when the user explicitly wants shared PlugLayer compute
    - `auto` otherwise
-6. Decide deploy type:
+8. Decide deploy type:
    - local build + image deploy when the current repo should be shipped now
    - Docker image when an image already exists
    - docker-compose when multiple services should run together
-7. Deploy.
-8. Tell the user deployment usually takes around 10 minutes and offer to check status later.
-9. If they chose a custom domain, walk them through DNS and ask them to reply after they add the records.
+9. Deploy.
+10. Tell the user deployment usually takes around 10 minutes and offer to check status later.
+11. If they chose a new custom domain, walk them through DNS and ask them to reply after they add the records.
 
 ## Required checks before deploy
 - project exists
@@ -41,6 +47,10 @@ Use this skill when the user wants to ship an app to PlugLayer.
 
 ## PlugLayer MCP actions to prefer
 - list/create projects
+- get project
+- get apps by project
+- list project domains
+- get domains by project
 - estimate compute when sizing is unclear
 - list PlugLayer compute options
 - get my available compute
@@ -76,6 +86,17 @@ If available compute is zero or insufficient:
 4. wait for the user to complete the compute step
 5. check available compute again
 6. only then deploy
+
+## Existing app rule
+Before deploying into a project that already has one or more apps:
+
+1. inspect the existing apps in that project
+2. if one looks like the same app, ask the user which path they want:
+   - update the existing app
+   - replace the existing app
+   - add a separate new app
+3. do not silently create duplicates when the user's intent is ambiguous
+4. if quota or compute is tight, explain that replacing or deleting the old app may be necessary before the new deploy can succeed
 
 ## Domain guidance
 When explaining DNS records:
