@@ -99,6 +99,8 @@ Use this skill when the user wants to ship an app through PlugLayer.
 - get logs when needed
 - app terminal when troubleshooting a live app
 
+Compute through MCP is read-only. Do not try to add, archive, remove, or otherwise mutate compute inventory from the plugin/MCP surface. If the user needs more capacity, use estimate + marketplace/shared-compute guidance, or direct an admin to the platform UI for compute administration.
+
 ## Local repo deploy default
 For current-repo deployments:
 
