@@ -17,6 +17,7 @@ Use this skill when a PlugLayer deployment failed, is crash-looping, or is not r
    - container crash
    - image pull issue
    - missing compute
+   - archived compute / archived app recovery case
    - ingress/domain issue
    - compose mismatch
    - missing project or compute setup expectations
@@ -34,6 +35,8 @@ Use this skill when a PlugLayer deployment failed, is crash-looping, or is not r
 - point the user to missing secrets/env vars
 - explain clearly when deployment is just still in progress and may need around 10 minutes
 - if custom domain is involved, separate app health from DNS verification health
+- if compute unexpectedly vanished from user inventory, treat it as an archive/recovery issue first; tell admins to use Admin -> DR archived compute recovery before recreating DB records
+- do not recommend hard-deleting product records; prefer archive, repair, restore, adopt, or reprovision language
 
 ## Response style
 Be concrete and calm:
