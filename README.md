@@ -82,3 +82,6 @@ export PLUGLAYER_API_KEY="plk_your_token_here"
 - "Build this repo, deploy it to PlugLayer, and use the default domain for now."
 - "Help me attach my custom domain and explain exactly what to put in my DNS provider."
 - "Why did this PlugLayer deploy fail? Check logs and fix it."
+
+## Scope
+This plugin does not expose PlugLayer admin-only tools. Compute stays read-only through MCP, users can remove their own apps, and project removal remains an end-user project workflow rather than an admin action.
