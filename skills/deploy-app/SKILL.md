@@ -107,7 +107,9 @@ Use this skill when the user wants to ship an app through PlugLayer.
 - deploy image
 - upload image archive and deploy
 - deploy compose
+- check slug availability before using or changing a PlugLayer slug
 - update the PlugLayer route slug for an app
+- get app/database connection env vars and connection strings after provisioning
 - add / verify / attach custom domains as a separate operation
 - get deployment/app status
 - get task status
@@ -157,6 +159,8 @@ Do not push images to any repository that is not listed by PlugLayer.
 - Remind the user that env vars can be updated later by asking to update them.
 - When only env vars change, explain that the app will restart/redeploy.
 - After a successful deploy, look at the other apps in the project and suggest concrete env updates when one app now depends on another.
+- For databases, fetch the concrete connection details after provisioning and offer to update dependent backend/frontend apps with those exact values.
+- Before assigning or changing a PlugLayer slug, check that it is available in the target project.
 
 ## Existing app rule
 Before deploying into a project that already has one or more apps:
