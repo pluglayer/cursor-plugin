@@ -7,6 +7,8 @@ description: Deploy a local repo, Docker image, or docker-compose app to the use
 
 Use this skill when the user wants to ship an app through PlugLayer.
 
+Databases are part of PlugLayer's **Data Layer**. When the user needs a database, asks whether a database already exists, wants a connection string, wants env vars for a backend, or wants to wire a frontend/backend to a database, prefer the Data Layer flow instead of treating the database as a generic app deploy.
+
 ## Conversation flow
 1. Inspect the repo or artifact first.
 2. Analyze the app shape before proposing deployment:
@@ -19,6 +21,8 @@ Use this skill when the user wants to ship an app through PlugLayer.
 3. Check what the user already has in the target project and broader stack:
    - existing apps in the project
    - likely databases already deployed
+   - available database templates in Data Layer
+   - whether a database should be provisioned through Data Layer or reused from an existing deployed database
    - whether frontend and backend already exist separately
    - whether they want to deploy databases too or just reuse an existing connection string
 4. Based on that analysis, explain a short step-by-step deployment plan and include a recommended option for any non-obvious choice.
@@ -74,10 +78,43 @@ Use this skill when the user wants to ship an app through PlugLayer.
    - Docker image when an image already exists in an allowed listed repository
    - docker-compose when multiple services should run together
    - public Docker Hub image directly for standard databases when a trusted public image already exists
+   - Data Layer provisioning when the user needs a database template such as MongoDB, Postgres, MySQL, or Redis
 14. Deploy.
 15. Tell the user deployment usually takes around 10 minutes and offer to check status later.
 16. If they chose a new custom domain, ask them to reply after they add the records so verification can continue.
 17. After deployment, retrieve all apps in the project and suggest useful cross-app env updates such as frontend → backend URL or backend → database connection string changes.
+
+## Data Layer workflow
+When the user needs any database or asks whether one already exists:
+
+1. First check the target project and broader user stack:
+   - list existing apps in the project
+   - list user databases
+   - decide whether to reuse an existing database or provision a new one
+2. If they want a new database, always go through the Data Layer path:
+   - list database templates
+   - recommend a sensible engine/template when the choice is not obvious
+   - check or create the target project
+   - ask for database app name
+   - ask for PlugLayer slug separately
+   - check slug availability before provisioning
+3. Before provisioning, inspect the database template env vars:
+   - explain required vars
+   - explain randomizable secrets
+   - make sure the final chosen values are explicit at deploy time
+4. Provision the database through Data Layer tools, not generic deploy_image/deploy_compose, unless the user explicitly asks for a custom non-template path.
+5. Poll task status until the database is ready or failed.
+6. After provisioning:
+   - get database connection details
+   - get env vars / connection strings
+   - suggest concrete follow-up updates for backend, frontend, workers, or other apps
+7. If the user asks for troubleshooting:
+   - get database logs
+   - explain whether the issue is compute, storage/PVC, exposure, auth, or app-level wiring
+8. If a database already exists and likely matches the need:
+   - recommend reuse first
+   - fetch its connection details
+   - offer to update the dependent app env vars with those values
 
 ## Required checks before deploy
 - project exists
@@ -110,6 +147,11 @@ Use this skill when the user wants to ship an app through PlugLayer.
 - check slug availability before using or changing a PlugLayer slug
 - update the PlugLayer route slug for an app
 - get app/database connection env vars and connection strings after provisioning
+- list database templates
+- list user databases
+- create database
+- get database connection details
+- get database logs
 - add / verify / attach custom domains as a separate operation
 - get deployment/app status
 - get task status
@@ -151,6 +193,10 @@ Do not push images to any repository that is not listed by PlugLayer.
 - If the app is a common database and a trusted public Docker Hub image exists, prefer the public image directly.
 - Do not mirror or push those public database images unless there is a very specific reason.
 - Before deploying a database, ask whether the user wants the database deployed here or already has one elsewhere and only wants to use the connection string.
+- For user-facing database provisioning, prefer Data Layer templates and database tools first.
+- Use generic app deploy for databases only when the user explicitly wants a custom database runtime outside the standard Data Layer template path.
+- After a database is provisioned, always fetch the concrete connection details before telling the user what to use.
+- Treat database connection details as active integration work: suggest exact backend/frontend env changes, not vague advice.
 
 ## Env var rule
 - Always check likely environment variables before deploy.
@@ -161,6 +207,10 @@ Do not push images to any repository that is not listed by PlugLayer.
 - After a successful deploy, look at the other apps in the project and suggest concrete env updates when one app now depends on another.
 - For databases, fetch the concrete connection details after provisioning and offer to update dependent backend/frontend apps with those exact values.
 - Before assigning or changing a PlugLayer slug, check that it is available in the target project.
+- If the user says they need a database for an app, be proactive:
+  - find whether one already exists
+  - otherwise provision it through Data Layer
+  - then return with exact env vars / connection strings to wire the app correctly
 
 ## Existing app rule
 Before deploying into a project that already has one or more apps:
@@ -230,5 +280,6 @@ Always summarize:
 - compute placement
 - app status
 - public URL if any
+- database template / engine and connection details if a database was part of the work
 - follow-up env suggestions if relevant
 - next step or fix if needed
