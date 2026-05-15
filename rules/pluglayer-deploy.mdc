@@ -7,30 +7,38 @@ When the user wants to deploy through PlugLayer:
 
 1. Inspect the repo first.
 2. Analyze the full app shape first: frontend, backend, workers, queues, DBs, caches, storage, and external services.
-3. If there is no project, ask what they want to call it, suggest sensible names, and include `[you choose]` as an option.
-4. Best practice: separate distinct full software systems into separate projects.
-5. Always ask for the app name before deploying. Suggest names that fit the project, and include `[you choose]` when the user delegates the choice.
-6. Treat app name and PlugLayer slug as separate values. Explain that slug controls the default PlugLayer URL segment, for example `https://<slug>.<project>.<user>.apps.pluglayer.io`, while app name is just the PlugLayer app identity.
-7. Before deployment, list the domains already available in that project.
-8. Ask whether they want:
+3. Treat databases as Data Layer resources first. If the user needs a database, mentions an existing DB, or needs a connection string/env vars for an app, prefer Data Layer tools over a generic app-style database deploy.
+4. If there is no project, ask what they want to call it, suggest sensible names, and include `[you choose]` as an option.
+5. Best practice: separate distinct full software systems into separate projects.
+6. Always ask for the app name before deploying. Suggest names that fit the project, and include `[you choose]` when the user delegates the choice.
+7. Treat app name and PlugLayer slug as separate values. Explain that slug controls the default PlugLayer URL segment, for example `https://<slug>.<project>.<user>.apps.pluglayer.io`, while app name is just the PlugLayer app identity.
+8. Before deployment, list the domains already available in that project.
+9. Ask whether they want:
    - the default PlugLayer subdomain for now
    - one of the existing project domains
    - a new custom domain
-9. Make it explicit that updating the PlugLayer slug and adding/updating a custom domain are two different operations.
-10. If they choose a custom domain, detect the likely provider first, confirm it with the user, and then show DNS instructions in a markdown table with columns: Type, Name / Host, Content / Value / Target, Description.
-11. Before building or deploying, understand the env vars. Pay extra attention to callback URLs, redirect URLs, public API URLs, connection strings, and slugs that may change after deployment.
-10. If the current repo should be deployed, prefer building the image locally. Detect the Dockerfile and env file, create or fix them when needed, test the image locally, and use PlugLayer's uploaded-image deploy flow when the image only exists on the local machine.
-11. Build Dockerfiles/images to be low-size, secure, and architecture-agnostic when possible.
-12. For standard databases with trusted public Docker Hub images, prefer the public image directly and do not push it unless there is a strong reason.
-13. After push/deploy, remove temporary files in `.pluglayer/` and delete the local image if it is no longer needed.
-14. Before deploying into an existing project, inspect the current apps in that project, list them, and ask whether the user wants to update one, replace one, or add a separate new app. Include a recommended option and `[you choose]` when helpful.
-15. If the namespace already looks full, quota-limited, or occupied by a failed/crash-looping older workload, refuse the separate new-app path by default and steer the user into update or replace flow instead.
-16. Before redeploying, confirm the exact app name with the user.
-17. If compute is missing, prefer marketplace/user-cloud wording, not SSH-first wording.
-18. If compute is missing or zero, estimate compute first, offer PlugLayer compute, share the get-compute link, then re-check available compute before trying to deploy again.
-19. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
-20. Do not push images to repositories that are not listed/allowed by PlugLayer.
-21. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
-22. After deployment, fetch the project apps and suggest useful follow-up env var updates between frontend, backend, workers, and databases.
-23. If env vars may differ in deployed use, call that out clearly and let the user know env vars can be updated later; updating env vars restarts/redeploys the app.
-24. Update user context after completed tasks or whenever the agent learns a useful deployment preference.
+10. Make it explicit that updating the PlugLayer slug and adding/updating a custom domain are two different operations.
+11. If they choose a custom domain, detect the likely provider first, confirm it with the user, and then show DNS instructions in a markdown table with columns: Type, Name / Host, Content / Value / Target, Description.
+12. Before building or deploying, understand the env vars. Pay extra attention to callback URLs, redirect URLs, public API URLs, connection strings, and slugs that may change after deployment.
+13. If the current repo should be deployed, prefer building the image locally. Detect the Dockerfile and env file, create or fix them when needed, test the image locally, and use PlugLayer's uploaded-image deploy flow when the image only exists on the local machine.
+14. Build Dockerfiles/images to be low-size, secure, and architecture-agnostic when possible.
+15. For standard databases with trusted public Docker Hub images, prefer the public image directly and do not push it unless there is a strong reason.
+16. If the user needs a database:
+    - first inspect whether one already exists in the project or user stack
+    - otherwise list Data Layer templates
+    - provision the DB through Data Layer
+    - check slug availability before creating it
+    - wait for provisioning to finish
+    - fetch the final connection details and suggest exact env updates for the dependent apps
+17. After push/deploy, remove temporary files in `.pluglayer/` and delete the local image if it is no longer needed.
+18. Before deploying into an existing project, inspect the current apps in that project, list them, and ask whether the user wants to update one, replace one, or add a separate new app. Include a recommended option and `[you choose]` when helpful.
+19. If the namespace already looks full, quota-limited, or occupied by a failed/crash-looping older workload, refuse the separate new-app path by default and steer the user into update or replace flow instead.
+20. Before redeploying, confirm the exact app name with the user.
+21. If compute is missing, prefer marketplace/user-cloud wording, not SSH-first wording.
+22. If compute is missing or zero, estimate compute first, offer PlugLayer compute, share the get-compute link, then re-check available compute before trying to deploy again.
+23. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
+24. Do not push images to repositories that are not listed/allowed by PlugLayer.
+25. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
+26. After deployment, fetch the project apps and suggest useful follow-up env var updates between frontend, backend, workers, and databases.
+27. If env vars may differ in deployed use, call that out clearly and let the user know env vars can be updated later; updating env vars restarts/redeploys the app.
+28. Update user context after completed tasks or whenever the agent learns a useful deployment preference.
