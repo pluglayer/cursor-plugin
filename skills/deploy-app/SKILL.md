@@ -103,10 +103,12 @@ When the user needs any database or asks whether one already exists:
    - explain randomizable secrets
    - make sure the final chosen values are explicit at deploy time
 4. Provision the database through Data Layer tools, not generic deploy_image/deploy_compose, unless the user explicitly asks for a custom non-template path.
+   - if a standard database image shows up in a generic MCP deploy request, reroute it into the same Data Layer template flow the frontend database wizard uses
 5. Poll task status until the database is ready or failed.
 6. After provisioning:
    - get database connection details
    - get env vars / connection strings
+   - use database lifecycle tools for access changes, restarts, or removals when the user asks
    - suggest concrete follow-up updates for backend, frontend, workers, or other apps
 7. If the user asks for troubleshooting:
    - get database logs
