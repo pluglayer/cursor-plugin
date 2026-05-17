@@ -131,6 +131,7 @@ When the user provides a docker-compose stack:
    - build them locally first
    - export them with `docker save`
    - deploy them through the uploaded-image flow as separate apps
+   - when available, use the compose local-build command helper to generate the exact `docker build` and `docker save` commands per service
 6. Before deploying local-build services from compose, make sure startup command overrides, ports, and env vars are carried over into the uploaded-image deploy request.
 
 ## Required checks before deploy
