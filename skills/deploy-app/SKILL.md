@@ -76,7 +76,7 @@ Databases are part of PlugLayer's **Data Layer**. When the user needs a database
 13. Decide deploy type:
    - local build + image deploy when the current repo should be shipped now
    - Docker image when an image already exists in an allowed listed repository
-   - docker-compose when multiple services should run together
+   - smart docker-compose decomposition when multiple services should run together
    - public Docker Hub image directly for standard databases when a trusted public image already exists
    - Data Layer provisioning when the user needs a database template such as MongoDB, Postgres, MySQL, or Redis
 14. Deploy.
@@ -115,6 +115,23 @@ When the user needs any database or asks whether one already exists:
    - recommend reuse first
    - fetch its connection details
    - offer to update the dependent app env vars with those values
+
+## Smart compose workflow
+When the user provides a docker-compose stack:
+
+1. Analyze the compose file before deploying it.
+2. Split it into separate deploy units instead of treating the whole compose file as one app.
+3. For services that match a marketplace database template:
+   - provision them through Data Layer
+   - keep the original compose service name as the PlugLayer app name when possible so inter-service DNS still makes sense
+4. For non-database services with pullable images:
+   - deploy each service as its own separate app/pod
+   - prefer preserving the single-service compose definition when the service uses compose-specific behavior such as `command`, volumes, or post-deploy hooks
+5. For services that use local Docker builds:
+   - build them locally first
+   - export them with `docker save`
+   - deploy them through the uploaded-image flow as separate apps
+6. Before deploying local-build services from compose, make sure startup command overrides, ports, and env vars are carried over into the uploaded-image deploy request.
 
 ## Required checks before deploy
 - project exists
