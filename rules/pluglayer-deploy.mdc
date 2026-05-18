@@ -20,7 +20,7 @@ When the user wants to deploy through PlugLayer:
 10. Make it explicit that updating the PlugLayer slug and adding/updating a custom domain are two different operations.
 11. If they choose a custom domain, detect the likely provider first, confirm it with the user, and then show DNS instructions in a markdown table with columns: Type, Name / Host, Content / Value / Target, Description.
 12. Before building or deploying, understand the env vars. Pay extra attention to callback URLs, redirect URLs, public API URLs, connection strings, and slugs that may change after deployment.
-13. If the current repo should be deployed, prefer building the image locally. Detect the Dockerfile and env file, create or fix them when needed, test the image locally, and use PlugLayer's uploaded-image deploy flow when the image only exists on the local machine.
+13. If the current repo should be deployed, prefer building the image locally. Detect the Dockerfile and env file, create or fix them when needed, test the image locally, and when the image only exists on the local machine export it as an OCI archive and use PlugLayer's uploaded-image deploy flow.
 14. Build Dockerfiles/images to be low-size, secure, and architecture-agnostic when possible.
 15. For standard databases with trusted public Docker Hub images, prefer the public image directly and do not push it unless there is a strong reason.
 16. If the user needs a database:
@@ -42,3 +42,4 @@ When the user wants to deploy through PlugLayer:
 26. After deployment, fetch the project apps and suggest useful follow-up env var updates between frontend, backend, workers, and databases.
 27. If env vars may differ in deployed use, call that out clearly and let the user know env vars can be updated later; updating env vars restarts/redeploys the app.
 28. Update user context after completed tasks or whenever the agent learns a useful deployment preference.
+29. After the first successful deploy, if the repo has git plus a GitHub `origin`, suggest setting up GitHub CI/CD for the same app id so future pushes rebuild and redeploy without changing the slug.

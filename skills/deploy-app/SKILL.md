@@ -9,6 +9,8 @@ Use this skill when the user wants to ship an app through PlugLayer.
 
 Databases are part of PlugLayer's **Data Layer**. When the user needs a database, asks whether a database already exists, wants a connection string, wants env vars for a backend, or wants to wire a frontend/backend to a database, prefer the Data Layer flow instead of treating the database as a generic app deploy.
 
+If the app is already deployed and the local repo has git plus a GitHub `origin`, suggest the `setup-cicd` skill after the first successful deploy so the same `app_id` can be updated automatically on push without changing the slug.
+
 ## Conversation flow
 1. Inspect the repo or artifact first.
 2. Analyze the app shape before proposing deployment:
@@ -130,11 +132,13 @@ When the user provides a docker-compose stack:
    - deploy each service as its own separate app/pod
    - prefer preserving the single-service compose definition when the service uses compose-specific behavior such as `command`, volumes, or post-deploy hooks
 5. For services that use local Docker builds:
-   - build them locally first
-   - export them with `docker save`
+   - build them locally first with the compose local-build command helper
+   - do a local smoke-test build/run before upload
+   - export them as architecture-agnostic OCI archives
    - deploy them through the uploaded-image flow as separate apps
-   - when available, use the compose local-build command helper to generate the exact `docker build` and `docker save` commands per service
-6. Before deploying local-build services from compose, make sure startup command overrides, ports, and env vars are carried over into the uploaded-image deploy request.
+   - when available, use the compose local-build command helper to generate the exact `docker buildx`, smoke-test, and archive export commands per service
+6. Before deploying non-database services from compose, make sure any env vars that should point at the newly provisioned databases are rewritten from the real Data Layer connection details instead of the original compose-local hostnames.
+7. Before deploying local-build services from compose, make sure startup command overrides, ports, and env vars are carried over into the uploaded-image deploy request.
 
 ## Required checks before deploy
 - project exists
@@ -171,6 +175,7 @@ When the user provides a docker-compose stack:
 - list user databases
 - create database
 - get database connection details
+- sync database env vars to app
 - get database logs
 - add / verify / attach custom domains as a separate operation
 - get deployment/app status
@@ -199,7 +204,7 @@ For current-repo deployments:
 5. build the image locally
 6. test the image locally before pushing it
 7. keep temporary deployment files inside `.pluglayer/` in the local repo
-8. if the image only exists locally, export it with `docker save` into `.pluglayer/` and use the uploaded-image deploy flow
+8. if the image only exists locally, export it as an OCI archive into `.pluglayer/` and use the uploaded-image deploy flow
 9. use plain `deploy_image` only when the source image is already pullable from an allowed listed repository
 10. after push/deploy, delete:
    - the temporary image archive
@@ -251,7 +256,13 @@ Before redeploying an existing app:
 1. list the relevant existing apps if there is any ambiguity
 2. show the app name
 3. ask the user to confirm the exact app name
-4. only then redeploy
+4. keep the existing slug unless the user explicitly asks to change it
+5. if the user changed code, do not just restart the old image:
+   - rebuild the image
+   - use a new version/tag
+   - push or upload that rebuilt image
+   - redeploy the existing app with the new image
+6. only then redeploy
 
 ## Domain guidance
 When explaining DNS records:
