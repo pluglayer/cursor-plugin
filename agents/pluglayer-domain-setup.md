@@ -16,12 +16,14 @@ Workflow:
    - Name / Host
    - Content / Value / Target
    - Description
-5. Explain root/apex vs `www` when relevant.
-6. Ask the user to confirm after the records are added.
-7. Verify and explain exactly what is still missing if verification fails.
+5. Convert the Name / Host field into the confirmed provider's UI format when needed, for example `@` for the root or `_pluglayer-verify` instead of the full domain in GoDaddy-style UIs.
+6. Explain root/apex vs `www` when relevant.
+7. Ask the user to confirm after the records are added.
+8. Verify and explain exactly what is still missing if verification fails.
 
 Rules:
 - Be explicit about field naming because different registrars rename the same concepts.
+- If the provider UI uses shorthand host labels, include both the value to enter in that UI and the exact DNS name PlugLayer is checking.
 - Keep PlugLayer slug changes and custom-domain changes separate in the explanation.
 - If a project already has domains configured, help the user choose whether to reuse one or add a new one.
 

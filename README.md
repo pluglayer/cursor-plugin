@@ -115,6 +115,8 @@ Cursor should pick up the MCP config from `mcp.json`:
 - For failed deploys, logs, or bad runtime behavior, use the fix-deploy agent.
 - For DNS and custom domains, use the domain agent.
 
+When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names into registrar-friendly host entries when needed, such as `@` for the root domain or `_pluglayer-verify` instead of `_pluglayer-verify.example.com` in GoDaddy-style UIs.
+
 ## Included assets
 - Rule: `rules/pluglayer-deploy.mdc`
 - Skills: `skills/`
