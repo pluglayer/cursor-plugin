@@ -5,7 +5,7 @@ PlugLayer's Cursor plugin is meant to feel like a sharp deployment teammate insi
 ## One-line install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pluglayer/pluglayer-cursor-plugin/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/pluglayer/cursor-plugin/main/install.sh | bash
 ```
 
 The installer gives the user a branded PlugLayer terminal flow, installs the plugin into Cursor's global local-plugin directory, asks for a token from [portal.pluglayer.com/tokens](https://portal.pluglayer.com/tokens), and supports later reinstall or token refresh without unnecessary re-entry.
