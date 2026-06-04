@@ -2,6 +2,14 @@
 
 PlugLayer's Cursor plugin is meant to feel like a sharp deployment teammate inside Cursor, not just an MCP connection.
 
+## One-line install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pluglayer/pluglayer-cursor-plugin/main/install.sh | bash
+```
+
+The installer gives the user a branded PlugLayer terminal flow, installs the plugin into Cursor's global local-plugin directory, asks for a token from [portal.pluglayer.com/tokens](https://portal.pluglayer.com/tokens), and supports later reinstall or token refresh without unnecessary re-entry.
+
 It bundles:
 - PlugLayer MCP access
 - a deployment-aware Cursor rule
@@ -50,7 +58,16 @@ The plugin includes focused agents so users can ask for specialized help without
 ### Requirements
 1. Cursor with plugin support
 2. `uvx` available on the machine that runs Cursor
-3. A PlugLayer API token from PlugLayer Settings
+3. A PlugLayer API token from [portal.pluglayer.com/tokens](https://portal.pluglayer.com/tokens)
+
+### Installer behavior
+
+- Installs the plugin into `~/.cursor/plugins/local/pluglayer-cursor-plugin`
+- Creates a `cursor-pluglayer` launcher in `~/.local/bin`
+- Saves the PlugLayer token in `~/.pluglayer/credentials.env`
+- Detects the installed plugin version and offers:
+  - update/reinstall PlugLayer for Cursor
+  - update the saved token only
 
 ### Recommended local install
 Using a symlink makes updates much nicer than copying the folder every time.
@@ -81,6 +98,12 @@ export PLUGLAYER_API_URL="https://api.pluglayer.com"
 
 5. Restart Cursor or run `Developer: Reload Window`.
 6. Open `Settings -> Plugins` and confirm `PlugLayer` appears.
+
+### Local install from this repo
+
+```bash
+./install.sh
+```
 
 ## MCP wiring
 
