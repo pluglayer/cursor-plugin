@@ -64,8 +64,8 @@ The plugin includes focused agents so users can ask for specialized help without
 
 - Installs the plugin into `~/.cursor/plugins/local/pluglayer-cursor-plugin`
 - Creates a `cursor-pluglayer` launcher in `~/.local/bin`
-- Saves the PlugLayer token in `~/.pluglayer/credentials.env`
-- Configures MCP to source `~/.pluglayer/credentials.env` directly before launching `pluglayer-mcp`
+- Prompts for a PlugLayer token during install
+- Wires the PlugLayer MCP server into Cursor
 - Detects the installed plugin version and offers:
   - update/reinstall PlugLayer for Cursor
   - update the saved token only
@@ -113,12 +113,9 @@ Cursor should pick up the MCP config from `mcp.json`:
 ```json
 {
   "pluglayer": {
-    "command": "/bin/bash",
+    "command": "pluglayer-mcp launcher",
     "type": "stdio",
-    "args": [
-      "-lc",
-      "if [ -f \"$HOME/.pluglayer/credentials.env\" ]; then . \"$HOME/.pluglayer/credentials.env\"; fi; exec uvx pluglayer-mcp"
-    ]
+    "args": ["..."]
   }
 }
 ```
