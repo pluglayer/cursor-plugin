@@ -43,6 +43,7 @@ INITIAL_API_URL="${PLUGLAYER_API_URL}"
 MARKETPLACE_FILE="${HOME}/.agents/plugins/marketplace.json"
 MARKETPLACE_PLUGIN_DIR="${HOME}/.agents/plugins/plugins"
 MARKETPLACE_NAME="personal"
+INSTALLING_FROM_TARGET_DIR=0
 
 cleanup() {
   rm -rf "${TMP_ROOT}"
@@ -284,6 +285,23 @@ configure_target() {
   METADATA_FILE="${STATE_DIR}/${TARGET}.env"
 }
 
+ensure_safe_workdir() {
+  local current_dir=""
+  current_dir="$(pwd -P 2>/dev/null || true)"
+
+  if [ -z "${current_dir}" ]; then
+    cd "${HOME}" 2>/dev/null || cd /tmp || die "Could not move to a safe working directory."
+    return
+  fi
+
+  case "${current_dir}" in
+    "${TARGET_PLUGIN_DIR}"|"${TARGET_PLUGIN_DIR}"/*)
+      INSTALLING_FROM_TARGET_DIR=1
+      cd "${HOME}" 2>/dev/null || cd /tmp || die "Could not move to a safe working directory."
+      ;;
+  esac
+}
+
 stage_plugin_bundle() {
   local source_dir=""
   step "Preparing the ${TARGET_LABEL} plugin bundle"
@@ -427,7 +445,9 @@ EOF
 remove_existing_install() {
   case "${TARGET}" in
     claude|cursor)
-      rm -rf "${TARGET_PLUGIN_DIR}"
+      if [ "${INSTALLING_FROM_TARGET_DIR}" -eq 0 ]; then
+        rm -rf "${TARGET_PLUGIN_DIR}"
+      fi
       ;;
     codex)
       if [ -f "${MARKETPLACE_FILE}" ]; then
@@ -442,7 +462,9 @@ PY
 )"
       fi
       codex plugin remove "${PLUGIN_NAME}@${MARKETPLACE_NAME}" >/dev/null 2>&1 || true
-      rm -rf "${TARGET_PLUGIN_DIR}"
+      if [ "${INSTALLING_FROM_TARGET_DIR}" -eq 0 ]; then
+        rm -rf "${TARGET_PLUGIN_DIR}"
+      fi
       ;;
   esac
 }
@@ -452,7 +474,6 @@ install_claude() {
   require_cmd claude
   ensure_uv
 
-  rm -rf "${TARGET_PLUGIN_DIR}"
   mkdir -p "${TARGET_PLUGIN_DIR}"
   cp -R "${STAGED_PLUGIN_DIR}/." "${TARGET_PLUGIN_DIR}/"
   write_launcher "${TARGET_LAUNCHER}" "claude" "${TARGET_PLUGIN_DIR}" "--plugin-dir"
@@ -461,7 +482,6 @@ install_claude() {
 
 upsert_codex_marketplace() {
   mkdir -p "${MARKETPLACE_PLUGIN_DIR}"
-  rm -rf "${TARGET_PLUGIN_DIR}"
   mkdir -p "${TARGET_PLUGIN_DIR}"
   cp -R "${STAGED_PLUGIN_DIR}/." "${TARGET_PLUGIN_DIR}/"
 
@@ -535,7 +555,6 @@ install_cursor() {
   require_cmd cursor
   ensure_uv
 
-  rm -rf "${TARGET_PLUGIN_DIR}"
   mkdir -p "${TARGET_PLUGIN_DIR}"
   cp -R "${STAGED_PLUGIN_DIR}/." "${TARGET_PLUGIN_DIR}/"
   write_launcher "${TARGET_LAUNCHER}" "cursor"
@@ -672,6 +691,7 @@ show_status() {
 
 main() {
   configure_target
+  ensure_safe_workdir
   print_banner
   stage_plugin_bundle
   load_saved_state
