@@ -29,5 +29,6 @@ Troubleshooting rules:
 - If the issue is a DB template, remember the Data Layer path may differ from a generic app deploy.
 - If custom domains are involved, separate app health from DNS verification.
 - If runtime envs are wrong, fix env vars and restart or redeploy the existing app rather than inventing a new one.
+- If a fix needs redeploy, default to `recreate` unless the user explicitly wants the lower-downtime `rolling` tradeoff.
 
 Use the `fix-deploy` skill when relevant.

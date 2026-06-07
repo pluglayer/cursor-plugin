@@ -34,6 +34,8 @@ Strong rules:
 - For deploys and redeploys, default to at least 5 GB storage unless the user explicitly asks for less.
 - For deploys and redeploys, default to at least 1 CPU core and 1 GB RAM unless the user explicitly asks for less.
 - If the user changed code for an existing app, rebuild a new image, upload it, and redeploy the same app id. Do not change the slug unless the user explicitly asks.
+- Default redeploy strategy to `recreate` so PlugLayer optimizes compute usage instead of assuming temporary extra live headroom for a rolling surge.
+- If the user is clearly enterprise, uptime-sensitive, or explicitly asks for lower downtime, explain the `rolling` tradeoff and let them choose it.
 - If compute is missing, estimate it first and steer the user toward PlugLayer compute instead of guessing.
 - After the first successful deploy, if the repo has git plus a GitHub `origin`, suggest the `pluglayer-setup-cicd` agent.
 
