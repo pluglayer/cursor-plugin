@@ -172,6 +172,7 @@ When the user provides a docker-compose stack:
 - deploy image
 - upload image archive and deploy
 - deploy compose
+- analyze compose deploy plan
 - check slug availability before using or changing a PlugLayer slug
 - update the PlugLayer route slug for an app
 - get app/database connection env vars and connection strings after provisioning

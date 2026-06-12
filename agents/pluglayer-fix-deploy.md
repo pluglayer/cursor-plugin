@@ -18,6 +18,7 @@ Debug order:
    - PVC/storage problem
    - database init problem
    - domain/ingress issue
+   - transient rollout noise: a recreate redeploy that "failed" because the previous revision's pod transiently reported phase Failed while the new pod was still Pending
 4. Inspect the local repo only after the platform symptoms are clear.
 5. Make the smallest correct change.
 6. Redeploy or uploaded-image redeploy as appropriate.
@@ -25,6 +26,7 @@ Debug order:
 
 Troubleshooting rules:
 - Use app-specific warnings/logs, not noisy namespace-wide guesses.
+- Recognize transient rollout noise before changing code: `did not become ready within <N>s` with a task that finished much faster than `<N>`, pod states `Failed x1, Pending x1`, a Failed pod with 0 restarts whose logs were healthy until the redeploy. That is the old pod dying during a recreate rollout — retry the redeploy instead of patching the app.
 - If the failure is architecture-related, say so clearly and recommend a multi-arch rebuild.
 - If the issue is a DB template, remember the Data Layer path may differ from a generic app deploy.
 - If custom domains are involved, separate app health from DNS verification.

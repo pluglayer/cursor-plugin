@@ -24,13 +24,15 @@ Required flow:
    - optional: `PLUGLAYER_API_URL`
    - optional: `PLUGLAYER_BUILD_ENV_JSON`
 7. Explain what the pipeline does:
+   - serialize deploys per app with a `concurrency` group (no overlapping rollouts for the same app)
    - build OCI image
    - inject build-time env/build args when provided
    - upload image to PlugLayer
-   - redeploy the same app id with the new image/tag
+   - redeploy the same app id with the new image/tag and wait for the rollout task; the job fails with the real rollout error if the task fails
 
 Important rules:
 - Build-time env belongs in the build step, not as a separate runtime-only CI step.
+- Never hand-roll task polling, retry loops, or status-check curls in the workflow: the reusable actions own retries, rollout-task polling, and failure detail. If a repo has a hand-rolled PlugLayer deploy workflow, offer to replace it with the reusable actions.
 - If the user only wants to change runtime env vars for a running app, prefer the normal app env update path plus restart, not a brand-new app.
 - If the workflow is broken, inspect the actual YAML before regenerating everything.
 - Keep the generated workflow crisp and explicit. Avoid unnecessary secrets and avoid changing the slug.
