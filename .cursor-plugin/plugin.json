@@ -1,0 +1,21 @@
+{
+  "name": "pluglayer-cursor-plugin",
+  "version": "1.1.4",
+  "displayName": "PlugLayer",
+  "description": "Deploy, operate, wire CI/CD, and troubleshoot PlugLayer apps from Cursor with MCP, rules, skills, and focused agents.",
+  "author": {
+    "name": "PlugLayer",
+    "email": "hello@pluglayer.com",
+    "url": "https://pluglayer.com"
+  },
+  "homepage": "https://pluglayer.com",
+  "repository": "https://github.com/pluglayer/pluglayer-cursor-plugin",
+  "license": "MIT",
+  "category": "developer-tools",
+  "keywords": ["pluglayer", "deployment", "cursor", "mcp", "docker", "kubernetes"],
+  "tags": ["deployment", "devops", "cicd", "agents", "mcp"],
+  "mcp": "./mcp.json",
+  "rules": "./rules/",
+  "skills": "./skills/",
+  "agents": "./agents/"
+}
