@@ -37,6 +37,8 @@ When the user wants to deploy through PlugLayer:
 21. If compute is missing, prefer marketplace/user-cloud wording, not SSH-first wording.
 22. If compute is missing or zero, estimate compute first, offer PlugLayer compute, share the get-compute link, then re-check available compute before trying to deploy again.
 23. If sizing is unclear, estimate compute first and then show the closest available PlugLayer compute options.
+24. Compute attachment model: a dedicated node serves exactly one project, a project can combine multiple nodes, and shared PlugLayer nodes serve many projects from each user's shared reservation. Use the project-scoped compute summary to see the nodes backing a project.
+25. Users can buy a custom shared-compute reservation (CPU/RAM/storage/GPU slice at admin unit rates). Show pricing via `get_shared_compute_pricing` and direct purchases to the web app: Compute -> Add Compute -> Buy shared compute.
 24. For deploys and redeploys, default to at least 5 GB storage unless the user explicitly asks for less.
 25. For deploys and redeploys, default to at least 1 CPU core and 1 GB RAM unless the user explicitly asks for less.
 26. Do not push images to repositories that are not listed/allowed by PlugLayer.
