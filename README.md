@@ -159,6 +159,6 @@ The generated GitHub workflow should use the public reusable actions repo:
 ## Scope
 
 This plugin stays in the end-user surface:
-- compute is read-only through MCP
+- compute inventory and purchasing are read-only; project owners may attach/detach existing dedicated nodes through backend-guarded MCP tools
 - users can operate their own apps and databases
 - admin-only compute/cluster mutation is intentionally not part of this plugin
