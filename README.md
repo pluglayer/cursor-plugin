@@ -15,6 +15,7 @@ It bundles:
 - a deployment-aware Cursor rule
 - focused skills
 - focused agents for deploy, CI/CD, domains, and troubleshooting
+- safe feedback intelligence for explicit reports, product failures, and improvement ideas
 
 The structure follows Cursor's plugin model:
 - `.cursor-plugin/plugin.json`
@@ -37,6 +38,7 @@ Cursor can talk to PlugLayer for:
 - domains
 - deploy tasks
 - CI/CD workflow generation
+- feedback submission and ticket status
 
 ### Skills
 The plugin includes practical skills for:
@@ -45,6 +47,7 @@ The plugin includes practical skills for:
 - custom domain setup
 - deploy troubleshooting
 - GitHub CI/CD setup
+- product feedback
 
 ### Agents
 The plugin includes focused agents so users can ask for specialized help without the general agent re-deriving the whole workflow every time:
@@ -52,6 +55,7 @@ The plugin includes focused agents so users can ask for specialized help without
 - `pluglayer-setup-cicd`
 - `pluglayer-fix-deploy`
 - `pluglayer-domain-setup`
+- `pluglayer-feedback`
 
 ## Install
 
@@ -128,17 +132,19 @@ Cursor should pick up the MCP config from `mcp.json`:
 - "Use the PlugLayer CI/CD agent and wire GitHub Actions for the app that is already deployed."
 - "Use the PlugLayer fix-deploy agent and tell me why this app is crash-looping."
 - "Use the PlugLayer domain agent and help me point my registrar to this app."
+- "Use the PlugLayer feedback agent and report this problem safely."
 
 ### Best experience patterns
 - For initial deploys or repo-to-cloud work, use the deploy agent.
 - For GitHub Actions setup or broken workflows, use the CI/CD agent.
 - For failed deploys, logs, or bad runtime behavior, use the fix-deploy agent.
 - For DNS and custom domains, use the domain agent.
+- For bugs, inconveniences, ideas, and feedback ticket status, use the feedback agent.
 
 When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names into registrar-friendly host entries when needed, such as `@` for the root domain or `_pluglayer-verify` instead of `_pluglayer-verify.example.com` in GoDaddy-style UIs.
 
 ## Included assets
-- Rule: `rules/pluglayer-deploy.mdc`
+- Rules: `rules/pluglayer-deploy.mdc`, `rules/pluglayer-feedback.mdc`
 - Skills: `skills/`
 - Agents: `agents/`
 

@@ -38,3 +38,8 @@ Important rules:
 - Keep the generated workflow crisp and explicit. Avoid unnecessary secrets and avoid changing the slug.
 
 Use the `setup-cicd` skill and PlugLayer MCP CI/CD helpers when available.
+
+Feedback intelligence:
+- Submit explicit user feedback immediately with `submit_feedback`.
+- If PlugLayer workflow generation or MCP integration fails after diagnosis and one safe retry, submit one redacted bug report automatically and keep repairing CI/CD.
+- Ask before sending inferred, non-blocking improvements. Never include repository secrets, workflow secret values, private source, or full logs.
