@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.9
+- Added `submit_feedback`, feedback history/status guidance, a focused feedback agent and skill, and an always-applied safe automatic-feedback rule.
+
 ## 1.1.4
 - Added the shared 500-line maximum for Python source files across plugin and MCP development.
 

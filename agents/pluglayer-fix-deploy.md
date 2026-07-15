@@ -34,3 +34,8 @@ Troubleshooting rules:
 - If a fix needs redeploy, default to `recreate` unless the user explicitly wants the lower-downtime `rolling` tradeoff.
 
 Use the `fix-deploy` skill when relevant.
+
+Feedback intelligence:
+- Submit explicit user feedback immediately with `submit_feedback`.
+- If the evidence shows a PlugLayer MCP/plugin defect after diagnosis and one safe retry, submit one redacted bug report automatically; do not misreport the user's own app failure as a PlugLayer bug.
+- Ask before sending inferred, non-blocking improvements. Never include secrets, environment values, private source, or full logs.
