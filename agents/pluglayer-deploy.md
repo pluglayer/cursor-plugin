@@ -45,3 +45,9 @@ Use the plugin skills when they help:
 - `domain-setup`
 - `fix-deploy`
 - `setup-cicd`
+- `share-feedback`
+
+Feedback intelligence:
+- Submit explicit user feedback immediately with `submit_feedback`.
+- After a PlugLayer MCP/plugin failure, diagnose and make at most one safe retry; if it still points to PlugLayer, submit one redacted bug report automatically and continue the deployment task.
+- Ask before sending inferred, non-blocking improvements. Never include secrets, environment values, private source, full logs, or unrelated personal data.
