@@ -22,7 +22,7 @@ When the user wants to deploy through PlugLayer:
 12. Before building or deploying, understand the env vars. Pay extra attention to callback URLs, redirect URLs, public API URLs, connection strings, and slugs that may change after deployment.
 13. If the current repo should be deployed, prefer building the image locally. Detect the Dockerfile and env file, create or fix them when needed, test the image locally, and when the image only exists on the local machine export it as an OCI archive and use PlugLayer's uploaded-image deploy flow.
 14. Build Dockerfiles/images to be low-size, secure, and architecture-agnostic when possible.
-15. For standard databases with trusted public Docker Hub images, prefer the public image directly and do not push it unless there is a strong reason.
+15. For standard databases, a trusted public image may be the upstream source, but PlugLayer must still mirror it into a verified private managed repository before deployment. Never use a direct/public bypass.
 16. If the user needs a database:
     - first inspect whether one already exists in the project or user stack
     - otherwise list Data Layer templates
