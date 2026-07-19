@@ -38,6 +38,7 @@ Cursor can talk to PlugLayer for:
 - domains
 - deploy tasks
 - CI/CD workflow generation
+- secure runtime env import from key/value maps or dotenv/JSON/YAML content
 - feedback submission and ticket status
 
 ### Skills
@@ -48,6 +49,7 @@ The plugin includes practical skills for:
 - deploy troubleshooting
 - GitHub CI/CD setup
 - product feedback
+- runtime env updates through MCP and `pluglayer/actions`
 
 ### Agents
 The plugin includes focused agents so users can ask for specialized help without the general agent re-deriving the whole workflow every time:

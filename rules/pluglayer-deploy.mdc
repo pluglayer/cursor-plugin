@@ -45,6 +45,7 @@ When the user wants to deploy through PlugLayer:
 27. After queueing a deployment, explain that it usually takes around 10 minutes and offer to check status later.
 28. After deployment, fetch the project apps and suggest useful follow-up env var updates between frontend, backend, workers, and databases.
 29. If env vars may differ in deployed use, call that out clearly and let the user know env vars can be updated later; updating env vars restarts/redeploys the app.
+    - Use `apply_app_env_vars` for arbitrary updates. Pass direct key/value data or exact selected file content, never a filesystem path; do not interpolate or echo values.
 30. Update user context after completed tasks or whenever the agent learns a useful deployment preference.
 31. After the first successful deploy, if the repo has git plus a GitHub `origin`, suggest setting up GitHub CI/CD for the same app id so future pushes rebuild and redeploy without changing the slug.
 32. That GitHub CI/CD setup should use the public `pluglayer/actions` reusable actions repo and follow this flow:
