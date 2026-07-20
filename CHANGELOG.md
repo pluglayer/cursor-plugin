@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.11
+- Add secure arbitrary env import through MCP and document JSON, dotenv/config content, and reusable Action flows without returning secret values.
+
 ## 1.1.9
 - Added `submit_feedback`, feedback history/status guidance, a focused feedback agent and skill, and an always-applied safe automatic-feedback rule.
 
