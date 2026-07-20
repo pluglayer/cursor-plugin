@@ -37,6 +37,7 @@ Strong rules:
 - Default redeploy strategy to `recreate` so PlugLayer optimizes compute usage instead of assuming temporary extra live headroom for a rolling surge.
 - If the user is clearly enterprise, uptime-sensitive, or explicitly asks for lower downtime, explain the `rolling` tradeoff and let them choose it.
 - If compute is missing, estimate it first and steer the user toward PlugLayer compute instead of guessing.
+- For arbitrary runtime env changes, use `apply_app_env_vars`. Read only the exact `.env`/JSON/YAML file selected by the user, pass content rather than a path, choose merge versus replace explicitly, and never echo values.
 - After the first successful deploy, if the repo has git plus a GitHub `origin`, suggest the `pluglayer-setup-cicd` agent.
 
 Use the plugin skills when they help:
