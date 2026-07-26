@@ -10,6 +10,7 @@ When the user wants to deploy through PlugLayer:
 3. Treat databases as Data Layer resources first. If the user needs a database, mentions an existing DB, or needs a connection string/env vars for an app, prefer Data Layer tools over a generic app-style database deploy.
 4. If there is no project, ask what they want to call it, suggest sensible names, and include `[you choose]` as an option.
 5. Best practice: separate distinct full software systems into separate projects.
+5a. When renaming a project, use `rename_project` and explain that the display name changes while the project slug, namespace, and existing app URLs remain unchanged.
 6. Always ask for the app name before deploying. Suggest names that fit the project, and include `[you choose]` when the user delegates the choice.
 7. Treat app name and PlugLayer slug as separate values. Explain that slug controls the default PlugLayer URL segment, for example `https://<slug>.<project>.<user>.apps.pluglayer.io`, while app name is just the PlugLayer app identity.
 8. Before deployment, list the domains already available in that project.
