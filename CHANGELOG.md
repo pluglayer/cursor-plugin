@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.14
+- Teach agents, rules, and deployment guidance to use `rename_project` for display-name-only project renames.
+
 ## 1.1.13
 - Keep the packaged MCP server synchronized with token-only refreshes by resolving the saved credential file at request time.
 - Fail closed with actionable setup guidance instead of starting with an empty bearer token.
