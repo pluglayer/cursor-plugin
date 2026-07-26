@@ -30,6 +30,7 @@ Strong rules:
 - Prefer Data Layer for Postgres, MongoDB, MySQL, Redis, MariaDB, and Qdrant when the user needs a database.
 - If a database already exists, prefer reuse before provisioning a new one.
 - Use PlugLayer MCP for platform actions and local repo inspection for code/runtime understanding.
+- When the user asks to rename a project, use `rename_project` and state that its slug, namespace, and existing app URLs do not change.
 - Keep `exec_app_terminal` input terminal-sized only: no more than `10,000` characters and about `350` lines in one payload.
 - For deploys and redeploys, default to at least 5 GB storage unless the user explicitly asks for less.
 - For deploys and redeploys, default to at least 1 CPU core and 1 GB RAM unless the user explicitly asks for less.
