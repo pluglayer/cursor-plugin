@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.15
+- Treat root and `www` as separate routes, require an explicit root redirect or attachment, and validate nested-path preservation.
+
 ## 1.1.14
 - Teach agents, rules, and deployment guidance to use `rename_project` for display-name-only project renames.
 
