@@ -75,6 +75,10 @@ The plugin includes focused agents so users can ask for specialized help without
 - Detects the installed plugin version and offers:
   - update/reinstall PlugLayer for Cursor
   - update the saved token only
+- Reloads the saved token for later MCP calls after a token-only refresh; the
+  packaged server refuses to start when no usable token is configured.
+- Cursor's generic `mcp_auth` action does not inject credentials into a local
+  stdio server. Use the installer's token update flow, then reload Cursor.
 
 ### Recommended local install
 Using a symlink makes updates much nicer than copying the folder every time.
@@ -143,7 +147,7 @@ Cursor should pick up the MCP config from `mcp.json`:
 - For DNS and custom domains, use the domain agent.
 - For bugs, inconveniences, ideas, and feedback ticket status, use the feedback agent.
 
-When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names into registrar-friendly host entries when needed, such as `@` for the root domain or `_pluglayer-verify` instead of `_pluglayer-verify.example.com` in GoDaddy-style UIs.
+When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names using the authoritative zone. GoDaddy cannot publish a CNAME at `@`, so its supported apex path is a PlugLayer `www` custom domain plus GoDaddy HTTPS Permanent (301) Forward only from the root, without masking.
 
 ## Included assets
 - Rules: `rules/pluglayer-deploy.mdc`, `rules/pluglayer-feedback.mdc`
