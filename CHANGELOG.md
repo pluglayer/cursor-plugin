@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.13
+- Keep the packaged MCP server synchronized with token-only refreshes by resolving the saved credential file at request time.
+- Fail closed with actionable setup guidance instead of starting with an empty bearer token.
+
 ## 1.1.12
 - Prevent GoDaddy apex CNAME instructions and guide users to a PlugLayer `www` domain plus GoDaddy HTTPS 301 forwarding.
 
