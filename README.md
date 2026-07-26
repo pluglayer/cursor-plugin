@@ -143,7 +143,7 @@ Cursor should pick up the MCP config from `mcp.json`:
 - For DNS and custom domains, use the domain agent.
 - For bugs, inconveniences, ideas, and feedback ticket status, use the feedback agent.
 
-When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names into registrar-friendly host entries when needed, such as `@` for the root domain or `_pluglayer-verify` instead of `_pluglayer-verify.example.com` in GoDaddy-style UIs.
+When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names using the authoritative zone. GoDaddy cannot publish a CNAME at `@`, so its supported apex path is a PlugLayer `www` custom domain plus GoDaddy HTTPS Permanent (301) Forward only from the root, without masking.
 
 ## Included assets
 - Rules: `rules/pluglayer-deploy.mdc`, `rules/pluglayer-feedback.mdc`

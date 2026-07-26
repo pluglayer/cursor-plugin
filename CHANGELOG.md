@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.12
+- Prevent GoDaddy apex CNAME instructions and guide users to a PlugLayer `www` domain plus GoDaddy HTTPS 301 forwarding.
+
 ## 1.1.11
 - Add secure arbitrary env import through MCP and document JSON, dotenv/config content, and reusable Action flows without returning secret values.
 
