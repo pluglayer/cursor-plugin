@@ -77,6 +77,8 @@ The plugin includes focused agents so users can ask for specialized help without
   - update the saved token only
 - Reloads the saved token for later MCP calls after a token-only refresh; the
   packaged server refuses to start when no usable token is configured.
+- Starts the latest published `pluglayer-mcp` release without loading the
+  user's login-shell startup files.
 - Cursor's generic `mcp_auth` action does not inject credentials into a local
   stdio server. Use the installer's token update flow, then reload Cursor.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.16
+- Keep the bundled v1 FastMCP runtime below the breaking MCP Python SDK v2 release.
+- Refresh `pluglayer-mcp` when Cursor starts it and avoid loading unrelated login-shell startup files.
+
 ## 1.1.15
 - Treat root and `www` as separate routes, require an explicit root redirect or attachment, and validate nested-path preservation.
 
