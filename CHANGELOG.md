@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.19
+- Add project display-name/description updates through `update_project_metadata`, including explicit description clearing and routing-identity safeguards.
+
+## 1.1.18
+- Let users inspect feedback status and update an owned ticket's title/description, while keeping status and resolution admin-managed.
+- Check recent feedback and consolidate matching reports instead of creating repetitive tickets.
+
 ## 1.1.17
 - Keep the local stdio MCP server discoverable before authentication and apply saved token/API URL changes on the next tool call without a reload.
 - Clarify that Cursor's generic `mcp_auth` action does not configure local stdio credentials.
