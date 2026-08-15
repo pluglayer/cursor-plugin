@@ -75,12 +75,17 @@ The plugin includes focused agents so users can ask for specialized help without
 - Detects the installed plugin version and offers:
   - update/reinstall PlugLayer for Cursor
   - update the saved token only
-- Reloads the saved token for later MCP calls after a token-only refresh; the
-  packaged server refuses to start when no usable token is configured.
+- Reloads the saved token and API URL on each MCP call after a token-only
+  refresh. The packaged server stays discoverable without credentials and
+  returns actionable authentication guidance until a token is saved.
 - Starts the latest published `pluglayer-mcp` release without loading the
   user's login-shell startup files.
 - Cursor's generic `mcp_auth` action does not inject credentials into a local
-  stdio server. Use the installer's token update flow, then reload Cursor.
+  stdio server. Use the installer's token update flow, then retry the failed
+  PlugLayer tool; no server reload is required.
+- Warns when the global or current-project Cursor MCP config also registers
+  PlugLayer, because that manual copy can receive calls with different auth
+  state from the plugin server.
 
 ### Recommended local install
 Using a symlink makes updates much nicer than copying the folder every time.

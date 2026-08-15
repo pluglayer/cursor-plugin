@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.17
+- Keep the local stdio MCP server discoverable before authentication and apply saved token/API URL changes on the next tool call without a reload.
+- Clarify that Cursor's generic `mcp_auth` action does not configure local stdio credentials.
+- Warn when a manual global or project PlugLayer MCP entry duplicates the plugin server.
+
 ## 1.1.16
 - Keep the bundled v1 FastMCP runtime below the breaking MCP Python SDK v2 release.
 - Refresh `pluglayer-mcp` when Cursor starts it and avoid loading unrelated login-shell startup files.

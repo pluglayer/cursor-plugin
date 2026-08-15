@@ -44,6 +44,7 @@ MARKETPLACE_FILE="${HOME}/.agents/plugins/marketplace.json"
 MARKETPLACE_PLUGIN_DIR="${HOME}/.agents/plugins/plugins"
 MARKETPLACE_NAME="personal"
 INSTALLING_FROM_TARGET_DIR=0
+INVOKED_FROM_DIR="$(pwd -P 2>/dev/null || true)"
 
 cleanup() {
   rm -rf "${TMP_ROOT}"
@@ -689,6 +690,57 @@ show_status() {
   printf '\n'
 }
 
+cursor_config_contains_pluglayer() {
+  local config_path="$1"
+  [ -f "${config_path}" ] || return 1
+  python3 - "${config_path}" <<'PY'
+import json
+import sys
+
+try:
+    with open(sys.argv[1], "r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+except (OSError, ValueError):
+    raise SystemExit(1)
+
+servers = payload.get("mcpServers", payload) if isinstance(payload, dict) else {}
+for name, config in servers.items():
+    if "pluglayer" in str(name).lower():
+        raise SystemExit(0)
+    if isinstance(config, dict) and "pluglayer-mcp" in json.dumps(config).lower():
+        raise SystemExit(0)
+raise SystemExit(1)
+PY
+}
+
+warn_cursor_duplicate_mcp() {
+  [ "${TARGET}" = "cursor" ] || return
+
+  local global_config="${HOME}/.cursor/mcp.json"
+  local project_config=""
+  local found_config=""
+  if [ -n "${INVOKED_FROM_DIR}" ]; then
+    project_config="${INVOKED_FROM_DIR}/.cursor/mcp.json"
+  fi
+
+  if cursor_config_contains_pluglayer "${global_config}"; then
+    found_config="${global_config}"
+  fi
+  if [ -n "${project_config}" ] && [ "${project_config}" != "${global_config}" ] && cursor_config_contains_pluglayer "${project_config}"; then
+    if [ -n "${found_config}" ]; then
+      found_config="${found_config}, ${project_config}"
+    else
+      found_config="${project_config}"
+    fi
+  fi
+
+  if [ -n "${found_config}" ]; then
+    warn "Another PlugLayer MCP registration exists in ${found_config}."
+    printf '%s\n' "The Cursor plugin already registers PlugLayer. Keep one copy so calls cannot land on servers with different authentication state; normally keep the plugin copy and remove or disable the manual entry in Settings > Tools & MCP."
+    printf '\n'
+  fi
+}
+
 main() {
   configure_target
   ensure_safe_workdir
@@ -696,6 +748,7 @@ main() {
   stage_plugin_bundle
   load_saved_state
   show_status
+  warn_cursor_duplicate_mcp
 
   if [ -z "${INSTALLED_VERSION}" ]; then
     install_target
