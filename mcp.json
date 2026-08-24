@@ -4,7 +4,7 @@
     "type": "stdio",
     "args": [
       "-c",
-      "credential_file=\"$HOME/.pluglayer/credentials.env\"; if [ -r \"$credential_file\" ]; then . \"$credential_file\"; if [ -z \"${PLUGLAYER_API_KEY:-}\" ]; then printf '%s\\n' 'PlugLayer MCP authentication is empty. Update the saved token, then reload Cursor.' >&2; exit 78; fi; export PLUGLAYER_CREDENTIALS_FILE=\"$credential_file\"; unset PLUGLAYER_API_KEY PLUGLAYER_API_URL; elif [ -z \"${PLUGLAYER_API_KEY:-}\" ]; then printf '%s\\n' 'PlugLayer MCP authentication is not configured. Run the PlugLayer installer or export PLUGLAYER_API_KEY, then reload Cursor.' >&2; exit 78; fi; exec uvx pluglayer-mcp@latest"
+      "export PLUGLAYER_CREDENTIALS_FILE=\"$HOME/.pluglayer/credentials.env\"; exec uvx pluglayer-mcp@latest"
     ]
   }
 }

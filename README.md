@@ -33,13 +33,14 @@ References:
 ### MCP
 Cursor can talk to PlugLayer for:
 - projects
+- project display-name and description updates
 - apps
 - databases / Data Layer
 - domains
 - deploy tasks
 - CI/CD workflow generation
 - secure runtime env import from key/value maps or dotenv/JSON/YAML content
-- feedback submission and ticket status
+- feedback submission, ticket status, and owner-scoped title/description updates
 
 ### Skills
 The plugin includes practical skills for:
@@ -75,12 +76,17 @@ The plugin includes focused agents so users can ask for specialized help without
 - Detects the installed plugin version and offers:
   - update/reinstall PlugLayer for Cursor
   - update the saved token only
-- Reloads the saved token for later MCP calls after a token-only refresh; the
-  packaged server refuses to start when no usable token is configured.
+- Reloads the saved token and API URL on each MCP call after a token-only
+  refresh. The packaged server stays discoverable without credentials and
+  returns actionable authentication guidance until a token is saved.
 - Starts the latest published `pluglayer-mcp` release without loading the
   user's login-shell startup files.
 - Cursor's generic `mcp_auth` action does not inject credentials into a local
-  stdio server. Use the installer's token update flow, then reload Cursor.
+  stdio server. Use the installer's token update flow, then retry the failed
+  PlugLayer tool; no server reload is required.
+- Warns when the global or current-project Cursor MCP config also registers
+  PlugLayer, because that manual copy can receive calls with different auth
+  state from the plugin server.
 
 ### Recommended local install
 Using a symlink makes updates much nicer than copying the folder every time.
@@ -147,7 +153,7 @@ Cursor should pick up the MCP config from `mcp.json`:
 - For GitHub Actions setup or broken workflows, use the CI/CD agent.
 - For failed deploys, logs, or bad runtime behavior, use the fix-deploy agent.
 - For DNS and custom domains, use the domain agent.
-- For bugs, inconveniences, ideas, and feedback ticket status, use the feedback agent.
+- For bugs, inconveniences, ideas, feedback ticket status, and consolidating repetitive reports, use the feedback agent.
 
 When the domain agent explains DNS forms, it should translate PlugLayer's exact DNS names using the authoritative zone. Root and `www` are separate exact routes, so the agent asks which must work and either attaches both or configures an HTTPS permanent redirect to the canonical hostname. It validates a nested path so the redirect does not drop the path or query. GoDaddy cannot publish a CNAME at `@`, so its supported apex path is a PlugLayer `www` custom domain plus GoDaddy HTTPS Permanent (301) Forward only from the root, without masking.
 
