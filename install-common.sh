@@ -38,6 +38,7 @@ SAVED_TOKEN=""
 SAVED_API_URL="${DEFAULT_API_URL}"
 PLUGLAYER_API_KEY="${PLUGLAYER_API_KEY:-}"
 PLUGLAYER_API_URL="${PLUGLAYER_API_URL:-${DEFAULT_API_URL}}"
+PLUGLAYER_QUICK_INSTALL="${PLUGLAYER_QUICK_INSTALL:-0}"
 INITIAL_API_KEY="${PLUGLAYER_API_KEY}"
 INITIAL_API_URL="${PLUGLAYER_API_URL}"
 MARKETPLACE_FILE="${HOME}/.agents/plugins/marketplace.json"
@@ -553,12 +554,15 @@ install_codex() {
 
 install_cursor() {
   step "Installing PlugLayer into Cursor"
-  require_cmd cursor
   ensure_uv
 
   mkdir -p "${TARGET_PLUGIN_DIR}"
   cp -R "${STAGED_PLUGIN_DIR}/." "${TARGET_PLUGIN_DIR}/"
-  write_launcher "${TARGET_LAUNCHER}" "cursor"
+  if command -v cursor >/dev/null 2>&1; then
+    write_launcher "${TARGET_LAUNCHER}" "cursor"
+  else
+    warn "Cursor's shell command is unavailable; the desktop plugin files were installed directly."
+  fi
   success "Cursor now has PlugLayer at ${TARGET_PLUGIN_DIR}"
 }
 
@@ -749,6 +753,13 @@ main() {
   load_saved_state
   show_status
   warn_cursor_duplicate_mcp
+
+  if [ "${PLUGLAYER_QUICK_INSTALL}" = "1" ]; then
+    install_target
+    post_install_summary
+    restart_instructions
+    exit 0
+  fi
 
   if [ -z "${INSTALLED_VERSION}" ]; then
     install_target

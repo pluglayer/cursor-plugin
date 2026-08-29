@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.20
+- Support non-interactive quick setup from the portal's short-lived installer exchange.
+
 ## 1.1.19
 - Add project display-name/description updates through `update_project_metadata`, including explicit description clearing and routing-identity safeguards.
 
