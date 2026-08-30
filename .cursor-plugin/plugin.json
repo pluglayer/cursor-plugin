@@ -1,8 +1,8 @@
 {
   "name": "pluglayer-cursor-plugin",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "displayName": "PlugLayer",
-  "description": "Deploy, operate, troubleshoot, and share PlugLayer feedback from Cursor with MCP, rules, skills, and focused agents.",
+  "description": "Deploy, operate, troubleshoot, and share PlugLayer feedback from Cursor with MCP, rules, skills, and focused agents Create, test, and submit marketplace templates.",
   "author": {
     "name": "PlugLayer",
     "email": "hello@pluglayer.com",

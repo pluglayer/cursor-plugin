@@ -182,3 +182,11 @@ This plugin stays in the end-user surface:
 - compute inventory and purchasing are read-only; project owners may attach/detach existing dedicated nodes through backend-guarded MCP tools
 - users can operate their own apps and databases
 - admin-only compute/cluster mutation is intentionally not part of this plugin
+
+## Marketplace templates
+
+Use `manage-templates` to author or clone private Compose templates, preview and test them,
+submit for admin review, track reviewer notes, and maintain template-backed apps.
+Start with: “Turn this Compose file into a private PlugLayer template and submit it
+after testing.” Public tools cannot approve or publish submissions. The matching
+backend and `pluglayer-mcp` release must be deployed before these tools are usable.
