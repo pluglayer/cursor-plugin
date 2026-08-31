@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.22
+
+- Add app security checks, IP allowlist and rate-limit skills, and focused security routing.
+
 ## 1.1.20
 - Support non-interactive quick setup from the portal's short-lived installer exchange.
 
