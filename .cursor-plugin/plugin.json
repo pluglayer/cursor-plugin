@@ -1,8 +1,8 @@
 {
   "name": "pluglayer-cursor-plugin",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "displayName": "PlugLayer",
-  "description": "Deploy, operate, troubleshoot, and share PlugLayer feedback from Cursor with MCP, rules, skills, and focused agents Create, test, and submit marketplace templates.",
+  "description": "Deploy and operate PlugLayer apps from Cursor; check app security, manage IP allowlists and rate limits, create templates, and share feedback.",
   "author": {
     "name": "PlugLayer",
     "email": "hello@pluglayer.com",
@@ -12,8 +12,21 @@
   "repository": "https://github.com/pluglayer/pluglayer-cursor-plugin",
   "license": "MIT",
   "category": "developer-tools",
-  "keywords": ["pluglayer", "deployment", "cursor", "mcp", "docker", "kubernetes"],
-  "tags": ["deployment", "devops", "cicd", "agents", "mcp"],
+  "keywords": [
+    "pluglayer",
+    "deployment",
+    "cursor",
+    "mcp",
+    "docker",
+    "kubernetes"
+  ],
+  "tags": [
+    "deployment",
+    "devops",
+    "cicd",
+    "agents",
+    "mcp"
+  ],
   "mcp": "./mcp.json",
   "rules": "./rules/",
   "skills": "./skills/",
