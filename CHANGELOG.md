@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.23
+
+- Use the canonical PlugLayer plugin icon and add cached, consent-gated plugin update guidance through PlugLayer MCP.
+
 ## 1.1.22
 
 - Add app security checks, IP allowlist and rate-limit skills, and focused security routing.

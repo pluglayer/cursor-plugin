@@ -1,6 +1,6 @@
 {
   "name": "pluglayer-cursor-plugin",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "displayName": "PlugLayer",
   "description": "Deploy and operate PlugLayer apps from Cursor; check app security, manage IP allowlists and rate limits, create templates, and share feedback.",
   "author": {
@@ -9,6 +9,7 @@
     "url": "https://pluglayer.com"
   },
   "homepage": "https://pluglayer.com",
+  "logo": "https://pluglayer.com/pluglayer-icon.png",
   "repository": "https://github.com/pluglayer/pluglayer-cursor-plugin",
   "license": "MIT",
   "category": "developer-tools",
