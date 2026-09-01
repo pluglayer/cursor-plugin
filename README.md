@@ -76,6 +76,10 @@ The plugin includes focused agents so users can ask for specialized help without
 - Detects the installed plugin version and offers:
   - update/reinstall PlugLayer for Cursor
   - update the saved token only
+- During normal PlugLayer work, MCP checks installer-managed plugin versions at
+  most once per 24 hours. It stays quiet when current, asks before an available
+  update, and installs only the exact approved version from a pinned public
+  repository commit.
 - Reloads the saved token and API URL on each MCP call after a token-only
   refresh. The packaged server stays discoverable without credentials and
   returns actionable authentication guidance until a token is saved.
