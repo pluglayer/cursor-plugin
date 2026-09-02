@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.24
+
+- Plan dedicated compute per app, reuse project capacity first, prevent undersized machine bundles, and add confirmation-gated Extra Compute Requests.
+
 ## 1.1.23
 
 - Use the canonical PlugLayer plugin icon and add cached, consent-gated plugin update guidance through PlugLayer MCP.
