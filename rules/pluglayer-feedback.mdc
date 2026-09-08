@@ -11,7 +11,7 @@ For every PlugLayer task:
 - Do not report a defect that belongs only to the user's app as a PlugLayer bug.
 - Include the affected tool/page, expected behavior, actual behavior, reproduction context, and a concise error summary.
 - Never include credentials, environment values, private source, full logs, personal data, or unrelated infrastructure details.
-- Before submitting when practical, list recent owned feedback. Use `update_my_feedback` to consolidate the title/description of a matching ticket instead of creating repetitive feedback.
+- Before submitting when practical, list recent owned feedback and inspect matching tickets. Submitted feedback must not be edited: never call `update_my_feedback`. For corrections, additional evidence, or a recurrence, call `submit_feedback` to create a new ticket and include `Reference feedback: <previous ticket ID>` in its description. If the previous ticket is `resolved`, explicitly say the same issue happened again and describe the new occurrence; leave the old ticket and its resolution unchanged.
 - Keep ticket status and resolution admin-managed; use list/get tools to report them without claiming the user can change them.
-- Avoid duplicate tickets in one conversation. Keep feedback-submission or update failures separate from the original failure.
-- Use `submit_feedback`, `list_my_feedback`, `get_feedback`, and `update_my_feedback`, or the `share-feedback` skill and `pluglayer-feedback` agent.
+- Avoid repeatedly submitting the same occurrence in one conversation; new evidence or recurrence warrants a new referenced ticket. Keep feedback-submission failures separate from the original failure.
+- Use `submit_feedback`, `list_my_feedback`, `get_feedback`, or the `share-feedback` skill and `pluglayer-feedback` agent.
