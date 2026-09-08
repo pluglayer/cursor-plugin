@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.25
+
+- Keep submitted feedback unchanged; create new follow-up tickets referencing the previous ticket, including recurrence after resolution.
+
 ## 1.1.24
 
 - Plan dedicated compute per app, reuse project capacity first, prevent undersized machine bundles, and add confirmation-gated Extra Compute Requests.
