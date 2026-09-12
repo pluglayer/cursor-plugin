@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.26
+
+- Isolate the public Windows installer from all private Admin, Security Operations, and GTM product details.
+
 ## 1.1.25
 
 - Keep submitted feedback unchanged; create new follow-up tickets referencing the previous ticket, including recurrence after resolution.
