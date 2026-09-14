@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.27
+
+- Proactively submit safe PlugLayer feedback for product-caused poor experiences, challenges, friction, confusing guidance, and bugs.
+
 ## 1.1.26
 
 - Isolate the public Windows installer from all private Admin, Security Operations, and GTM product details.
