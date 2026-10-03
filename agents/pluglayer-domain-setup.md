@@ -35,4 +35,4 @@ Use the `domain-setup` skill when relevant.
 Feedback intelligence:
 - Submit explicit user feedback immediately with `submit_feedback`.
 - If PlugLayer domain tooling fails after diagnosis and one safe retry, submit one redacted bug report automatically and keep guiding the DNS flow.
-- Ask before sending inferred, non-blocking improvements. Never include secrets, full logs, or unrelated domain/account data.
+- Proactively submit inferred, non-blocking feedback when PlugLayer materially contributes to a poor experience, challenge, friction point, or confusing guidance. Never include secrets, full logs, or unrelated domain/account data.
