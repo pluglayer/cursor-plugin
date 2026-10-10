@@ -1,10 +1,3 @@
 {
-  "pluglayer": {
-    "command": "/bin/bash",
-    "type": "stdio",
-    "args": [
-      "-c",
-      "export PLUGLAYER_CREDENTIALS_FILE=\"$HOME/.pluglayer/credentials.env\"; exec uvx pluglayer-mcp@latest"
-    ]
-  }
+  "pluglayer": {"url": "https://mcp.pluglayer.com/mcp"}
 }
