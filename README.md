@@ -12,3 +12,5 @@ This plugin connects Cursor to PlugLayer through the hosted MCP service. No Pyth
 Cursor stores the OAuth connection securely and refreshes it when needed. Never copy an API token into chat. The hosted MCP URL is `https://mcp.pluglayer.com/mcp`.
 
 The plugin includes PlugLayer MCP plus deployment, repo inspection, domains, CI/CD, project metadata, environment updates, feedback, security, and repair skills.
+
+Detailed agent setup: [installation instructions](installation_instruction.md).
