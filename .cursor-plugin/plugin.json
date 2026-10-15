@@ -1,6 +1,6 @@
 {
   "name": "pluglayer-cursor-plugin",
-  "version": "1.1.39",
+  "version": "1.1.40",
   "displayName": "PlugLayer",
   "description": "Ship repos, containers, and Compose stacks to dedicated PlugLayer compute; connect databases and domains, inspect health, repair rollouts, manage CI/CD and security, launch templates, and share feedback from Cursor.",
   "author": {
@@ -9,7 +9,7 @@
     "url": "https://pluglayer.com"
   },
   "homepage": "https://pluglayer.com",
-  "logo": "https://pluglayer.com/pluglayer-icon.png",
+  "logo": "./assets/pluglayer-icon.png",
   "repository": "https://github.com/pluglayer/pluglayer-cursor-plugin",
   "license": "MIT",
   "category": "developer-tools",
@@ -28,8 +28,9 @@
     "agents",
     "mcp"
   ],
-  "mcp": "./mcp.json",
   "rules": "./rules/",
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": "./agents/",
+  "mcpServers": "./mcp.json",
+  "hooks": "./hooks/hooks.json"
 }
