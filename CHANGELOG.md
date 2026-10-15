@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.41 — 2026-10-15 (unreleased)
+
+- Route PlugLayer questions to the matching tool. Use setup only for install, update, or reconnect, and do not browse the site for data the tools return.
+
 ## 1.1.40 — 2026-10-15 (unreleased)
 
 - Use documented MCP/hook paths, wrapped MCP configuration and a bundled logo.
