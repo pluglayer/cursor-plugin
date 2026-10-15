@@ -1,3 +1,7 @@
 {
-  "pluglayer": {"url": "https://mcp.pluglayer.com/mcp"}
+  "mcpServers": {
+    "pluglayer": {
+      "url": "https://mcp.pluglayer.com/mcp"
+    }
+  }
 }
