@@ -1,5 +1,62 @@
 # Changelog
 
+## 1.1.40 — 2026-10-15 (unreleased)
+
+- Use documented MCP/hook paths, wrapped MCP configuration and a bundled logo.
+- Verify setup and native component discovery; keep focused agents available without changing unrelated conversations.
+- Document masked connection values, compact template discovery and launch-session cleanup.
+- Align version/changelog gates and include marketplace readiness guidance.
+
+## 1.1.39
+
+- Fix public plugin loading, registration and OAuth recovery (2026-10-14, `1478bac`).
+
+## 1.1.38
+
+- Update PlugLayer plugin to version 1.1.38, removing unnecessary OAuth prompts from installation scripts. Enhance post-installation user guidance by clarifying connection through the native plugin UI and informing users about necessary actions after installation. Revise installation documentation to reflect these changes, improving overall user experience. (2026-10-14, `b1dc184`).
+
+## 1.1.37
+
+- Update installation scripts and documentation for PlugLayer Cursor plugin to version 1.1.37. Refine OAuth connection prompts in Bash and PowerShell installers for improved user experience. Enhance terminal interaction handling during installation and update installation instructions to reflect the new version. (2026-10-12, `e5cbb83`).
+
+## 1.1.36
+
+- Add installation scripts for PlugLayer Cursor plugin in Bash and PowerShell. Update installation instructions and README to clarify setup and capabilities. Bump plugin version to 1.1.36 and enhance plugin description to reflect new features and improvements. (2026-10-12, `5cd66b4`).
+
+## 1.1.35
+
+- No distinct version declaration exists in this package’s checked-in history; this number is not asserted to have shipped.
+
+## 1.1.34
+
+- Bump public plugin release to 1.1.34 (2026-10-11, `345bcac`).
+
+## 1.1.33
+
+- Update version to 1.1.33 in plugin.json for the pluglayer-cursor-plugin (2026-10-11, `e08f50f`).
+
+## 1.1.32
+
+- No distinct version declaration exists in this package’s checked-in history; this number is not asserted to have shipped.
+
+## 1.1.31
+
+- Publish per-agent installation instructions (2026-10-11, `03030f9`).
+
+## 1.1.30
+
+- Release OAuth-compatible public plugin packs (2026-10-11, `8e5bf30`).
+
+## 1.1.29
+
+- Use OAuth hosted MCP for public plugins (2026-10-10, `c841643`).
+
+## 1.1.28
+
+- Add self-contained public plugin agent setup and native validation (2026-10-07, `41959bb`).
+
+## Earlier recorded history
+
 ## 1.1.27
 
 - Proactively submit safe PlugLayer feedback for product-caused poor experiences, challenges, friction, confusing guidance, and bugs.
